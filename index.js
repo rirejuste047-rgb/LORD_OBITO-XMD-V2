@@ -89,16 +89,16 @@ async function start() {
         await sock.sendMessage(sock.user.id, {
           image: { url: 'https://files.catbox.moe/yqnuab.jpg' },
           caption: `╔═══════════════════
-║ 🌨️ *LORD_OBITO-MD CONNECTED*
+║ 🌨️ *༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃*
 ╠═══════════════════
-║ 🔥 Welcome, mighty warrior of the lord_obito-md!
-║ ⚡ Bot: LORD_OBITO-MD activated
-║ 👑 Owner: ${config.OWNER_NAME} (+${config.OWNER_NUMBER})
-║ 📢 Channel: ${config.CHANNEL_URL}
+║ ☘︎ Welcome, mighty warrior of the lord_obito-md!
+║ ☠︎︎ 𝙱𝙾𝚃: ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ activated
+║ ༒︎ 𝙾𝚆𝙽𝙴𝚁: ${config.OWNER_NAME} (+${config.OWNER_NUMBER})
+║ ©️ 𝙲𝙷𝙰𝙽𝙴𝙻: ${config.CHANNEL_URL}
 ╚═══════════════════`,
           contextInfo: {
             externalAdReply: {
-              title: "LORD_OBITO-MD Bot",
+              title: "༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎",
               body: "🧊 The strongest WhatsApp bot in the North",
               thumbnailUrl: "https://files.catbox.moe/1sh2uh.jpg",
               sourceUrl: config.CHANNEL_URL,
