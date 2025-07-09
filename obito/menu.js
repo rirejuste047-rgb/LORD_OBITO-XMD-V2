@@ -34,7 +34,7 @@ export default {
     await sock.sendMessage(msg.key.remoteJid, {
       image: { url: 'https://files.catbox.moe/94neyf.jpg' },
       caption: `╔══════════════
-║ 🎨 *SNOW-MD MENU*
+║ 🎨 ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐌𝐄𝐍𝐔
 ╠══════════════
 ║ 👑 OWNER: ${config.OWNER_NAME}
 ║ 🙋 USER: ${sender}
