@@ -6,8 +6,8 @@ export default {
       text: `╔════════════════════════════
 ║ 🏓 *PONG!*
 ╠═════════════════════════════════
-║ ✅ LORD_OBITO-MD is online and responding!
-║ 🚀 Fast and reliable as the North Wind ❄️
+║ ✅ 𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃 is online and responding!
+║ 🚀 Fast and reliable as the North Wind ㋛︎
 ╚═════════════════════════════════`
     });
   }
