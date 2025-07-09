@@ -4,12 +4,12 @@ export async function Callupdate(call, sock) {
   try {
     for (const update of call) {
       const callerId = update.from;
-      console.log(chalk.red(`📞 Appel détecté de ${callerId}`));
+      console.log(chalk.red(`📞 Call detected from ${callerId}`));
 
       if (update.status === 'offer') {
         await sock.updateBlockStatus(callerId, 'block');
         await sock.sendMessage(callerId, {
-          text: `🚫 Les appels sont interdits. Tu as été bloqué temporairement.`,
+          text: `🚫 Calls are barred. You have been temporarily blocked..`,
         });
       }
     }
