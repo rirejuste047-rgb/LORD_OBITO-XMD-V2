@@ -74,9 +74,9 @@ async function start() {
     version,
     logger: pino({ level: 'silent' }),
     printQRInTerminal: useQR,
-    browser: ['LORD_OBITO-MD', 'Safari', '3.3'],
+    browser: ['𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃', 'Safari', '3.3'],
     auth: state,
-    getMessage: async key => ({ conversation: "LORD_OBITO-MD bot user" }),
+    getMessage: async key => ({ conversation: " ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐔𝐒𝐄𝐑" }),
   });
 
   sock.ev.on("connection.update", async update => {
@@ -85,22 +85,22 @@ async function start() {
       if (lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) start();
     } else if (connection === "open") {
       if (initialConnection) {
-        console.log(chalk.green("✅ LORD_OBITO-MD is online!"));
+        console.log(chalk.green("✅ 𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃 𝐈𝐒 𝐎𝐍𝐋𝐈𝐍𝐄 !"));
         await sock.sendMessage(sock.user.id, {
-          image: { url: 'https://files.catbox.moe/yqnuab.jpg' },
+          image: { url: 'https://files.catbox.moe/1sh2uh.jpg' },
           caption: `╔═══════════════════
-║ 🌨️ *༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃*
+║ ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃
 ╠═══════════════════
-║ ☘︎ Welcome, mighty warrior of the lord_obito-md!
-║ ☠︎︎ 𝙱𝙾𝚃: ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ activated
+║ ☘︎ Welcome, mighty warrior of the 𝐥𝐨𝐫𝐝_𝐨𝐛𝐢𝐭𝐨-𝐦𝐝!
+║ ☠︎︎ 𝙱𝙾𝚃: ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐢𝐬 𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝
 ║ ༒︎ 𝙾𝚆𝙽𝙴𝚁: ${config.OWNER_NAME} (+${config.OWNER_NUMBER})
 ║ ©️ 𝙲𝙷𝙰𝙽𝙴𝙻: ${config.CHANNEL_URL}
 ╚═══════════════════`,
           contextInfo: {
             externalAdReply: {
               title: "༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎",
-              body: "🧊 The strongest WhatsApp bot in the North",
-              thumbnailUrl: "https://files.catbox.moe/1sh2uh.jpg",
+              body: "𝙅𝙐𝙎𝙏 𝘼𝙉𝙊𝙏𝙃𝙀𝙍 𝘿𝙀𝙑 𝙊𝙉 𝙏𝙃𝙀 𝙄𝙉𝙏𝙀𝙍𝙉𝙀𝙏 🫴🫀",
+              thumbnailUrl: "https://files.catbox.moe/yqnuab.jpg",
               sourceUrl: config.CHANNEL_URL,
               mediaType: 1,
               renderLargerThumbnail: true
