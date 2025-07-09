@@ -19,7 +19,7 @@ export async function Handler(msg, sock, logger) {
 
     if (!text) return;
 
-    const prefix = config.PREFIX || '!';
+    const prefix = config.PREFIX || '.';
 
     if (text.startsWith(prefix)) {
       const [command, ...args] = text.slice(prefix.length).trim().split(/\s+/);
