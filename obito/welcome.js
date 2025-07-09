@@ -2,7 +2,7 @@ import config from '../config.js';
 
 export default {
   name: 'welcome',
-  description: 'Message de bienvenue stylé pour un groupe',
+  description: 'Stylish Welcome Message for a Group',
   category: 'group',
   async execute(sock, message, args) {
     try {
@@ -10,10 +10,10 @@ export default {
       const userId = message.key.participant || message.key.remoteJid;
       const username = userId.split('@')[0];
 
-      // Vérifie si welcome est activé
+      // Check if welcome is enabled
       if (!config.WELCOME_ENABLED) {
         await sock.sendMessage(from, {
-          text: '🚫 La commande welcome est désactivée par l\'owner.',
+          text: '🚫 The welcome command is disabled by the owner.',
         });
         return;
       }
@@ -32,12 +32,12 @@ export default {
 
       const dateString = new Date().toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
       const text = `
-👋 *Bienvenue @${username} !*
+🤗 *Welcome @${username} !*
 
-🏷️ *Groupe:* ${groupName}
-👥 *Membres:* ${membersCount}
-⭐ *Admins:* ${adminsCount}
-📅 *Date:* ${dateString}
+👥 *Group:* ${groupName}
+👤 *Members:* ${membersCount}
+👑 *Admins:* ${adminsCount}
+🗓️ *Date:* ${dateString}
 🤖 *Bot:* ${config.BOT_NAME || 'LORD_OBITO-MD'}
 
 > BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞
@@ -49,7 +49,7 @@ export default {
         mentions: [userId]
       });
     } catch (err) {
-      console.error('❌ Erreur dans la commande welcome:', err);
+      console.error('❌ Error in the welcome command:', err);
     }
   }
 };
