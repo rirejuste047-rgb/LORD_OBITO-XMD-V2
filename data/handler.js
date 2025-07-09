@@ -11,7 +11,7 @@ export async function Handler(msg, sock, logger) {
     const isGroup = from.endsWith('@g.us');
     const type = Object.keys(message.message)[0];
 
-    logger.info(`📨 Message reçu de ${from} | Type: ${type} | Group: ${isGroup}`);
+    logger.info(`📨 Message received from ${from} | Type: ${type} | Group: ${isGroup}`);
 
     const text =
       message.message.conversation ||
@@ -27,7 +27,7 @@ export async function Handler(msg, sock, logger) {
       if (cmd && typeof cmd.execute === 'function') {
         await cmd.execute(sock, message, args);
       } else {
-        await sock.sendMessage(from, { text: `❓ Commande inconnue: *${command}*` });
+        await sock.sendMessage(from, { text: `❓ Commande Unknown: *${command}*` });
       }
     }
   } catch (e) {
