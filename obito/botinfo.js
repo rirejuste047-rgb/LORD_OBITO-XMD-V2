@@ -6,13 +6,13 @@ export default {
   execute: async (sock, msg) => {
     await sock.sendMessage(msg.key.remoteJid, {
       text: `
-╔══════════════════
-║ 🤖 *SNOW-MD BOT INFO*
-╠══════════════════
+╔═════════════❦︎═══════════════
+║ 🤖 ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐁𝐎𝐓 𝐈𝐍𝐅𝐎𝐒
+╠═════════════❦︎═══════════════
 ║ 👤 Owner: ${config.OWNER_NAME}
 ║ 📞 Number: ${config.OWNER_NUMBER}
 ║ 🔗 Channel: ${config.CHANNEL_URL}
-╚══════════════════
+╚═════════════════════════════
       `.trim()
     });
   }
