@@ -32,7 +32,7 @@ export default {
     }
 
     await sock.sendMessage(msg.key.remoteJid, {
-      image: { url: 'https://files.catbox.moe/wi6n2p.mp4' },
+      video: { url: 'https://files.catbox.moe/wi6n2p.mp4' },
       caption: `╔══════════════
 ║ 🎨 ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎ 𝐌𝐄𝐍𝐔
 ╠══════════════
