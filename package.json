@@ -1,15 +1,15 @@
 {
-  "name": "LORD_OBITO-MD",
+  "name": "LORD_OBITO-XMD-V2",
   "version": "1.0.0",
-  "description": "WhatsApp Multi-Device Bot LORD_OBITO-MD",
+  "description": "WhatsApp Multi-Device Bot LORD_OBITO-XMD-V2",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name LORD_OBITO-MD",
-    "stop": "pm2 stop SNOW-MD",
-    "restart": "pm2 restart LORD_OBITO-MD"
+    "start": "pm2 start index.js --deep-monitoring --attach --name LORD_OBITO-XMD-V2",
+    "stop": "pm2 stop LORD_OBITO-XMD-V2",
+    "restart": "pm2 restart LORD_OBITO-XMD-V2"
   },
-  "keywords": ["lord_obito-md", "whatsapp-bot", "whatsapp md bot"],
+  "keywords": ["lord_obito-xmd-v2", "whatsapp-bot", "whatsapp xmd bot"],
   "author": "LORD OBITO DEV",
   "license": "ISC",
   "dependencies": {

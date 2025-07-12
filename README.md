@@ -13,7 +13,7 @@
 
 Click the button below to fork the repository and get your own copy:
 
-[![FORK REPO](https://img.shields.io/badge/FORK%20REPO-Click%20Here-007ACC?style=for-the-badge&logo=github)](https://github.com/LORD-OBITO-DEV/LORD_OBITO-MD/fork)
+[![FORK REPO](https://img.shields.io/badge/FORK%20REPO-Click%20Here-007ACC?style=for-the-badge&logo=github)](https://github.com/LORD-OBITO-DEV/LORD_OBITO-XMD-V2/fork)
 
 ---
 ## ⚙️ GET YOUR SESSION ID

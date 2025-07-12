@@ -44,7 +44,7 @@ async function downloadSessionData() {
     console.error("❌ Please set your SESSION_ID env!");
     return false;
   }
-  const sessionEncoded = config.SESSION_ID.split("LORD~OBITO~MD~")[1];
+  const sessionEncoded = config.SESSION_ID.split("LORD~OBITO~")[1];
   if (!sessionEncoded || !sessionEncoded.includes('#')) {
     console.error("❌ Invalid SESSION_ID format! It must contain both file ID and decryption key.");
     return false;
@@ -68,15 +68,15 @@ async function downloadSessionData() {
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
   const { version, isLatest } = await fetchLatestBaileysVersion();
-  console.log(`🤖 LORD_OBITO-MD using WA v${version.join('.')} | latest: ${isLatest}`);
+  console.log(`🤖 LORD_OBITO-XMD-V2 using WA v${version.join('.')} | latest: ${isLatest}`);
 
   const sock = makeWASocket({
     version,
     logger: pino({ level: 'silent' }),
     printQRInTerminal: useQR,
-    browser: ['𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃', 'Safari', '3.3'],
+    browser: ['𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2', 'Safari', '3.3'],
     auth: state,
-    getMessage: async key => ({ conversation: " ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐔𝐒𝐄𝐑" }),
+    getMessage: async key => ({ conversation: " ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎ 𝐔𝐒𝐄𝐑" }),
   });
 
   sock.ev.on("connection.update", async update => {
@@ -85,22 +85,22 @@ async function start() {
       if (lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut) start();
     } else if (connection === "open") {
       if (initialConnection) {
-        console.log(chalk.green("✅ 𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃 𝐈𝐒 𝐎𝐍𝐋𝐈𝐍𝐄 !"));
+        console.log(chalk.green("✅ 𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2 𝐈𝐒 𝐎𝐍𝐋𝐈𝐍𝐄 !"));
         await sock.sendMessage(sock.user.id, {
-          image: { url: 'https://files.catbox.moe/1sh2uh.jpg' },
+          image: { url: 'https://files.catbox.moe/wi6n2p.mp4' },
           caption: `╔═══════════════════
-║ ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃
+║ ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃
 ╠═══════════════════
 ║ ☘︎ Welcome, mighty warrior of the 𝐥𝐨𝐫𝐝_𝐨𝐛𝐢𝐭𝐨-𝐦𝐝!
-║ ☠︎︎ 𝙱𝙾𝚃: ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐢𝐬 𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝
-║ ༒︎ 𝙾𝚆𝙽𝙴𝚁: ${config.OWNER_NAME} (+${config.OWNER_NUMBER})
+║ ☠︎︎ 𝙱𝙾𝚃: ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎ 𝐢𝐬 𝐜𝐨𝐧𝐧𝐞𝐜𝐭𝐞𝐝
+║ ༒︎ 𝙾𝚆𝙽𝙴𝚁: ${config.OWNER_NAME} (${config.OWNER_NUMBER})
 ║ ©️ 𝙲𝙷𝙰𝙽𝙴𝙻: ${config.CHANNEL_URL}
 ╚═══════════════════`,
           contextInfo: {
             externalAdReply: {
-              title: "༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎",
+              title: "༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎",
               body: "𝙅𝙐𝙎𝙏 𝘼𝙉𝙊𝙏𝙃𝙀𝙍 𝘿𝙀𝙑 𝙊𝙉 𝙏𝙃𝙀 𝙄𝙉𝙏𝙀𝙍𝙉𝙀𝙏 🫴🫀",
-              thumbnailUrl: "https://files.catbox.moe/yqnuab.jpg",
+              thumbnailUrl: "https://files.catbox.moe/d7fqrl.jpg",
               sourceUrl: config.CHANNEL_URL,
               mediaType: 1,
               renderLargerThumbnail: true

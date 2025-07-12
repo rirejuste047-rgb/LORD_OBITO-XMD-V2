@@ -1,6 +1,6 @@
 {
-  "name": "LORD_OBITO-MD",
-  "description": "LORD_OBITO-MD WhatsApp Bot",
+  "name": "LORD_OBITO-XMD-V2",
+  "description": "LORD_OBITO-XMD-V2 WhatsApp Bot",
   "env": {
     "SESSION_ID": {
       "description": "MEGA session ID",
