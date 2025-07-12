@@ -35,7 +35,8 @@ export default {
 ╠═════════════════
 ║ ✅ Current mode: *${config.MODE.toUpperCase()}*
 ║ 👑 Updated by: ${sender === config.OWNER_NUMBER ? 'OWNER' : 'SUDO'}
-╚═════════════════`
+╚═════════════════
+> BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞`
     });
   }
 };

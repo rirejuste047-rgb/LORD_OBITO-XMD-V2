@@ -32,14 +32,16 @@ export default {
 
       const dateString = new Date().toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
       const text = `
-🤗 *Welcome @${username} !*
-
-👥 *Group:* ${groupName}
-👤 *Members:* ${membersCount}
-👑 *Admins:* ${adminsCount}
-🗓️ *Date:* ${dateString}
-🤖 *Bot:* ${config.BOT_NAME || 'LORD_OBITO-MD'}
-
+╔═════════════❦︎═══════════
+║ 🤗 *Welcome @${username} !*
+╠═════════════❦︎═══════════
+║ 👥 *Group:* ${groupName}
+║👤 *Members:* ${membersCount}
+║👑 *Admins:* ${adminsCount}
+║🗓️ *Date:* ${dateString}
+║🤖 *Bot:* ${config.BOT_NAME || 'LORD_OBITO-MD'}
+║
+╚══════════════════════════
 > BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞
       `.trim();
 

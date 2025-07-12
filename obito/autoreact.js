@@ -9,25 +9,25 @@ export default {
   execute: async (sock, msg, args) => {
     const sender = (msg.key.participant || msg.key.remoteJid).split('@')[0];
 
-    // Charger sudo list
+    // Load sudo list
     let sudoList = [];
     if (fs.existsSync('./lib/sudo.json')) {
       sudoList = JSON.parse(await fs.readFile('./lib/sudo.json'));
     }
 
-    // Vérifier permission OWNER ou SUDO
+    // Check OWNER or SUDO permission
     if (sender !== config.OWNER_NUMBER && !sudoList.includes(sender)) {
       return sock.sendMessage(msg.key.remoteJid, { text: '🚫 *Access denied. Owner or Sudo only.*' });
     }
 
-    // Lire état actuel
+    // Read current status
     let currentState = false;
     if (fs.existsSync(autoreactFile)) {
       const data = JSON.parse(await fs.readFile(autoreactFile));
       currentState = data.enabled || false;
     }
 
-    // Changer état selon argument
+    // Change state according to argument
     if (args.length === 0) {
       return sock.sendMessage(msg.key.remoteJid, {
         text: `🤖 *Auto React Status:* ${currentState ? 'Enabled ✅' : 'Disabled ❌'}\n\nUsage: !autoreact on/off`
@@ -41,7 +41,7 @@ export default {
       });
     }
 
-    // Mettre à jour fichier
+    // Update file
     await fs.writeFile(autoreactFile, JSON.stringify({ enabled: action === 'on' }, null, 2));
 
     await sock.sendMessage(msg.key.remoteJid, {

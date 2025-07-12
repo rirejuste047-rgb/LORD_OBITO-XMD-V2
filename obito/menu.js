@@ -32,16 +32,17 @@ export default {
     }
 
     await sock.sendMessage(msg.key.remoteJid, {
-      image: { url: 'https://files.catbox.moe/94neyf.jpg' },
+      image: { url: 'https://files.catbox.moe/wi6n2p.mp4' },
       caption: `╔══════════════
-║ 🎨 ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐌𝐃༒︎ 𝐌𝐄𝐍𝐔
+║ 🎨 ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎ 𝐌𝐄𝐍𝐔
 ╠══════════════
 ║ 👑 OWNER: ${config.OWNER_NAME}
 ║ 🙋 USER: ${sender}
 ║ ⚙️ MODE: ${config.MODE.toUpperCase()}
 ║ ⏱️ UPTIME: ${uptimeStr}
-║ 📦 VERSION: 1.0.0
-╚══════════════${commandList}`
+║ 📦 VERSION: 2.0.0
+╚══════════════${commandList}
+> BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞`
     });
   }
 };

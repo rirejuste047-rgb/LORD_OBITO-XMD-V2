@@ -9,18 +9,18 @@ export default {
   execute: async (sock, msg, args) => {
     const sender = (msg.key.participant || msg.key.remoteJid).split('@')[0];
 
-    // Charger sudo list
+    // Load sudo list
     let sudoList = [];
     if (fs.existsSync(sudoFile)) {
       sudoList = JSON.parse(await fs.readFile(sudoFile));
     }
 
-    // Vérifier permission OWNER ou SUDO
+    // Check OWNER or SUDO permission
     if (sender !== config.OWNER_NUMBER && !sudoList.includes(sender)) {
       return sock.sendMessage(msg.key.remoteJid, { text: '🚫 *Access denied. Owner or Sudo only.*' });
     }
 
-    // Obtenir numéro via reply ou args
+    // Get number via reply or args
     let numberToDel = null;
 
     if (msg.message?.extendedTextMessage?.contextInfo?.mentionedJid) {

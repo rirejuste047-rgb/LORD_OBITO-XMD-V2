@@ -33,7 +33,8 @@ export default {
 ║ 👑 Creator: *${creatorName}*
 ╠══════════════
 ${mentionText}
-╚══════════════`,
+╚══════════════
+> ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞`,
       mentions
     });
   }
