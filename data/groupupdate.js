@@ -14,7 +14,7 @@ export async function GroupUpdate(sock, group) {
           // Create a fake message simulating entry to execute welcome
           const fakeMsg = {
             key: { remoteJid: id, participant },
-            message: { conversation: '!welcome' }
+            message: { conversation: '.welcome' }
           };
           await welcomeCmd.execute(sock, fakeMsg, []);
         } catch (err) {
@@ -23,7 +23,18 @@ export async function GroupUpdate(sock, group) {
       } else if (action === 'remove') {
         console.log(chalk.yellow(`🚪 ${participant} a quitté ${id}`));
         await sock.sendMessage(id, {
-          text: `*😢 <@${participant.split('@')[0]}> GOOD BYE FRIEND.*`,
+          text: `╔═════════════❦︎═══════════════
+║   *😢 <@${participant.split('@')[0]}> GOOD BYE FRIEND.*
+║ 
+╠═════════════❦︎═══════════════
+║ 👥 *Group:* ${groupName}
+║👤 *Members:* ${membersCount}
+║👑 *Admins:* ${adminsCount}
+║🗓️ *Date:* ${dateString}
+║🤖 *Bot:* ${config.BOT_NAME || 'LORD_OBITO-XMD-V2'}
+║
+╚═════════════════════════════
+> BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞`,
           mentions: [participant]
         });
       }
