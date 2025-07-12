@@ -26,13 +26,6 @@ export async function GroupUpdate(sock, group) {
           text: `╔═════════════❦︎═══════════════
 ║   *😢 <@${participant.split('@')[0]}> GOOD BYE FRIEND.*
 ║ 
-╠═════════════❦︎═══════════════
-║ 👥 *Group:* ${groupName}
-║👤 *Members:* ${membersCount}
-║👑 *Admins:* ${adminsCount}
-║🗓️ *Date:* ${dateString}
-║🤖 *Bot:* ${config.BOT_NAME || 'LORD_OBITO-XMD-V2'}
-║
 ╚═════════════════════════════
 > BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞`,
           mentions: [participant]
