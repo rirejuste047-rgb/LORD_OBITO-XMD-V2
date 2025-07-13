@@ -25,7 +25,7 @@ export async function GroupUpdate(sock, group) {
         await sock.sendMessage(id, {
           text: `╔═════════════❦︎═══════════════
 ║   *😢 <@${participant.split('@')[0]}> GOOD BYE FRIEND.*
-║ 
+║
 ╚═════════════════════════════
 > BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞`,
           mentions: [participant]
