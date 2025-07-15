@@ -100,7 +100,7 @@ async function start() {
             externalAdReply: {
               title: "༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎",
               body: "𝙅𝙐𝙎𝙏 𝘼𝙉𝙊𝙏𝙃𝙀𝙍 𝘿𝙀𝙑 𝙊𝙉 𝙏𝙃𝙀 𝙄𝙉𝙏𝙀𝙍𝙉𝙀𝙏 🫴🫀",
-              thumbnailUrl: "https://files.catbox.moe/d7fqrl.jpg",
+              thumbnailUrl: "https://files.catbox.moe/9ov5s8.jpg",
               sourceUrl: config.CHANNEL_URL,
               mediaType: 1,
               renderLargerThumbnail: true
