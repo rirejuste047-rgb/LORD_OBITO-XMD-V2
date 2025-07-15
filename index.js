@@ -87,7 +87,7 @@ async function start() {
       if (initialConnection) {
         console.log(chalk.green("✅ 𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2 𝐈𝐒 𝐎𝐍𝐋𝐈𝐍𝐄 !"));
         await sock.sendMessage(sock.user.id, {
-          video: { url: 'https://files.catbox.moe/wi6n2p.mp4' },
+          image: { url: 'https://files.catbox.moe/iu4d62.jpg' },
           caption: `╔═══════════════════
 ║ ༒︎𝐋𝐎𝐑𝐃_𝐎𝐁𝐈𝐓𝐎-𝐗𝐌𝐃-𝐕2༒︎ 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃
 ╠═══════════════════
