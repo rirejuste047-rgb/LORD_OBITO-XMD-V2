@@ -11,12 +11,8 @@ export default {
       const username = userId.split('@')[0];
 
       // Check if welcome is enabled
-      if (!config.WELCOME_ENABLED) {
-        await sock.sendMessage(from, {
-          text: '🚫 The welcome command is disabled by the owner.',
-        });
+      if (!config.WELCOME_ENABLED) 
         return;
-      }
 
       const metadata = await sock.groupMetadata(from);
       const groupName = metadata.subject || 'ce groupe';
