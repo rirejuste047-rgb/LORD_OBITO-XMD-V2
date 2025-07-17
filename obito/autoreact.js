@@ -7,45 +7,52 @@ export default {
   name: 'autoreact',
   category: 'General',
   execute: async (sock, msg, args) => {
-    const sender = (msg.key.participant || msg.key.remoteJid).split('@')[0];
+    const from = msg.key.remoteJid;
+    const sender = (msg.key.participant || from).split('@')[0];
 
-    // Load sudo list
+    // En mode private, seul l'OWNER peut utiliser la commande
+    if (config.MODE === 'private' && sender !== config.OWNER_NUMBER) {
+      return; // Ne rien répondre
+    }
+
+    // Charger la liste des sudo
     let sudoList = [];
-    if (fs.existsSync('./lib/sudo.json')) {
-      sudoList = JSON.parse(await fs.readFile('./lib/sudo.json'));
+    const sudoFile = './lib/sudo.json';
+    if (fs.existsSync(sudoFile)) {
+      sudoList = JSON.parse(await fs.readFile(sudoFile));
     }
 
-    // Check OWNER or SUDO permission
+    // Vérification permission OWNER ou SUDO
     if (sender !== config.OWNER_NUMBER && !sudoList.includes(sender)) {
-      return sock.sendMessage(msg.key.remoteJid, { text: '🚫 *Access denied. Owner or Sudo only.*' });
+      return; // Ne rien répondre
     }
 
-    // Read current status
+    // Lire l'état actuel
     let currentState = false;
     if (fs.existsSync(autoreactFile)) {
       const data = JSON.parse(await fs.readFile(autoreactFile));
       currentState = data.enabled || false;
     }
 
-    // Change state according to argument
+    // Si aucun argument
     if (args.length === 0) {
-      return sock.sendMessage(msg.key.remoteJid, {
-        text: `🤖 *Auto React Status:* ${currentState ? 'Enabled ✅' : 'Disabled ❌'}\n\nUsage: !autoreact on/off`
+      return sock.sendMessage(from, {
+        text: `🔁 *État actuel de l'Auto React:* ${currentState ? 'Activé ✅' : 'Désactivé ❌'}\n\n📝 *Usage:* !autoreact on / off`
       });
     }
 
     const action = args[0].toLowerCase();
-    if (action !== 'on' && action !== 'off') {
-      return sock.sendMessage(msg.key.remoteJid, {
-        text: '📝 *Usage:* !autoreact on/off'
+    if (!['on', 'off'].includes(action)) {
+      return sock.sendMessage(from, {
+        text: '❌ *Commande invalide.*\n\n📝 *Usage:* !autoreact on / off'
       });
     }
 
-    // Update file
+    // Sauvegarde de l'état
     await fs.writeFile(autoreactFile, JSON.stringify({ enabled: action === 'on' }, null, 2));
 
-    await sock.sendMessage(msg.key.remoteJid, {
-      text: `✅ *Auto React has been ${action === 'on' ? 'enabled' : 'disabled'}.*`
+    return sock.sendMessage(from, {
+      text: `✅ *L'Auto React a été ${action === 'on' ? 'activé' : 'désactivé'}.*`
     });
   }
 };
