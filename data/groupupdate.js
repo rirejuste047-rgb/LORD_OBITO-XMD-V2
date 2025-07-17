@@ -1,38 +1,43 @@
 import chalk from 'chalk';
+import config from '../config.js';
 
 export async function GroupUpdate(sock, group) {
   try {
     const { id, participants, action } = group;
 
     participants.forEach(async participant => {
-      if (action === 'add') {
+      const username = participant.split('@')[0];
+
+      if (action === 'add' && config.WELCOME_ENABLED) {
         console.log(chalk.green(`👤 ${participant} a rejoint ${id}`));
-        // Here you can call the welcome command automatically
-        // For example, if you want to call the welcome command automatically :
+
         try {
           const welcomeCmd = (await import('../obito/welcome.js')).default;
-          // Create a fake message simulating entry to execute welcome
           const fakeMsg = {
             key: { remoteJid: id, participant },
             message: { conversation: '.welcome' }
           };
           await welcomeCmd.execute(sock, fakeMsg, []);
         } catch (err) {
-          console.error("Welcome automatic call error :", err);
+          console.error("❌ Erreur lors de l'appel automatique de la commande welcome :", err);
         }
-      } else if (action === 'remove') {
+
+      } else if (action === 'remove' && config.GOODBYE_ENABLED) {
         console.log(chalk.yellow(`🚪 ${participant} a quitté ${id}`));
-        await sock.sendMessage(id, {
-          text: `╔═════════════❦︎═══════════════
-║   *😢 <@${participant.split('@')[0]}> GOOD BYE FRIEND.*
-║
-╚═════════════════════════════
-> BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞`,
-          mentions: [participant]
-        });
+
+        try {
+          const goodbyeCmd = (await import('../obito/goodbye.js')).default;
+          const fakeMsg = {
+            key: { remoteJid: id, participant },
+            message: { conversation: '.goodbye' }
+          };
+          await goodbyeCmd.execute(sock, fakeMsg, []);
+        } catch (err) {
+          console.error("❌ Erreur lors de l'appel automatique de la commande goodbye :", err);
+        }
       }
     });
   } catch (err) {
-    console.error("❌ Erreur GroupUpdate:", err);
+    console.error("❌ Erreur générale GroupUpdate:", err);
   }
 }
