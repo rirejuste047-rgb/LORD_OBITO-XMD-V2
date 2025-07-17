@@ -1,31 +1,11 @@
 import config from '../config.js';
 import process from 'process';
-import fs from 'fs-extra';
-
-const sudoFile = './obito/sudo.json';
 
 export default {
   name: 'menu',
   category: 'General',
   execute: async (sock, msg) => {
-    const senderJid = msg.key.participant || msg.key.remoteJid;
-    const sender = senderJid.split('@')[0];
-
-    // Vérification OWNER ou SUDO
-    let sudoList = [];
-    if (fs.existsSync(sudoFile)) {
-      sudoList = JSON.parse(await fs.readFile(sudoFile));
-    }
-    const isOwner = sender === config.OWNER_NUMBER;
-    const isSudo = sudoList.includes(sender);
-
-    if (!isOwner && !isSudo) {
-      return sock.sendMessage(msg.key.remoteJid, {
-        text: '🚫 *Seuls le OWNER et les SUDO peuvent utiliser cette commande.*'
-      });
-    }
-
-    // Uptime format
+    const sender = msg.key.participant ? msg.key.participant.split('@')[0] : msg.key.remoteJid.split('@')[0];
     const uptime = process.uptime();
     const hours = Math.floor(uptime / 3600);
     const minutes = Math.floor((uptime % 3600) / 60);
