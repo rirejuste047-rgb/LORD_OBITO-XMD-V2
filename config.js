@@ -1,5 +1,5 @@
 export default {
-MODE: 'public', // public or private
+MODE: 'private', // public or private
 SESSION_ID: process.env.SESSION_ID || 'PLEASE PASTE YOUR SESSION ID HERE LORD~OBITO~',
 OWNER_NUMBER: '2250712668494',
 OWNER_NAME: '✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞',
