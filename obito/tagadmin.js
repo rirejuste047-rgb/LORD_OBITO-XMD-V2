@@ -1,5 +1,5 @@
 export default {
-  name: 'tagall',
+  name: 'tagadmin',
   category: 'Group',
   execute: async (sock, msg) => {
     const jid = msg.key.remoteJid;
@@ -15,38 +15,37 @@ export default {
     const groupMembers = metadata.participants;
     const memberCount = groupMembers.length;
 
-    const senderJid = msg.key.participant || msg.key.remoteJid;
-    const sender = metadata.participants.find(p => p.id === senderJid);
+    const senderId = msg.key.participant || msg.key.remoteJid;
+    const sender = metadata.participants.find(p => p.id === senderId);
     const adminName = sender?.notify || sender?.id.split('@')[0];
 
-    // Tente de récupérer la photo de profil du lanceur
-    let pfp = null;
-    try {
-      pfp = await sock.profilePictureUrl(senderJid, 'image');
-    } catch {
-      pfp = 'https://i.ibb.co/F4t9g2v/default-pfp.png'; // Fallback image
+    // Filtrer les admins
+    const admins = groupMembers.filter(member => member.admin !== null);
+    const adminCount = admins.length;
+
+    if (adminCount === 0) {
+      return sock.sendMessage(jid, {
+        text: '❌ Aucun admin trouvé dans ce groupe.'
+      });
     }
 
-    // Préparer les mentions ✞︎
     const mentions = [];
-    let textList = `╔═══════ 『✞︎ TAGALL ✞︎』═══════\n`;
+    let textList = `╔═══════ 『✞︎ TAGADMIN ✞︎』═══════\n`;
     textList += `║ 📛 Groupe: *${groupName}*\n`;
     textList += `║ 🙋 Appelé par: @${adminName}\n`;
-    textList += `║ 👥 Membres: *${memberCount}*\n`;
+    textList += `║ 🛡️ Admins: *${adminCount} / ${memberCount}*\n`;
     textList += `╠══════════════════════════\n`;
 
-    groupMembers.forEach((member, index) => {
-      const userTag = `@${member.id.split('@')[0]}`;
+    admins.forEach((admin, index) => {
+      const userTag = `@${admin.id.split('@')[0]}`;
       textList += `║ ${index + 1}. ✞︎ ${userTag}\n`;
-      mentions.push(member.id);
+      mentions.push(admin.id);
     });
 
     textList += `╚══════════════════════════\n> ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞︎`;
 
-    // Envoie du tag avec la photo de profil de l'utilisateur
     await sock.sendMessage(jid, {
-      image: { url: pfp },
-      caption: textList,
+      text: textList,
       mentions
     });
   }

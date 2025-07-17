@@ -5,13 +5,16 @@ import kickCmd from './kick.js';
 import kickallCmd from './kickall.js';
 import tagallCmd from './tagall.js';
 import tagCmd from './tag.js';
-import sudoaddCmd from './sudoadd.js';
-import sudodelCmd from './sudodel.js';
+import sudoCmd from './add-s.js';
+import delsudoCmd from './del-s.js';
 import sudolistCmd from './sudolist.js';
 import ownerCmd from './owner.js';
 import modeCmd from './mode.js';
 import autoreactCmd from './autoreact.js';
 import welcomeCmd from './welcome.js';
+import tagadminCmd from './tagadmin.js';
+import bugmenuCmd from './b-menu.js';
+import goodbyeCmd from './gbye.js'
 
 export default {
   menu: menuCmd,
@@ -21,11 +24,14 @@ export default {
   kickall: kickallCmd,
   tagall: tagallCmd,
   tag: tagCmd,
-  sudoadd: sudoaddCmd,
-  sudodel: sudodelCmd,
+  sudo: sudoCmd,
+  delsudo: delsudoCmd,
   sudolist: sudolistCmd,
   owner: ownerCmd,
   mode: modeCmd,
   autoreact: autoreactCmd,
-  welcome: welcomeCmd
+  welcome: welcomeCmd,
+  tag-admin: tagadminCmd,
+  bug-menu: bugmenuCmd,
+  goodbye: goodbyeCmd
 };

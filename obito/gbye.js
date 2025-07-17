@@ -1,8 +1,8 @@
 import config from '../config.js';
 
 export default {
-  name: 'welcome',
-  description: 'Stylish Welcome Message for a Group',
+  name: 'goodbye',
+  description: 'Message stylé de départ d’un membre du groupe',
   category: 'group',
   async execute(sock, message, args) {
     try {
@@ -10,18 +10,14 @@ export default {
       const userId = message.key.participant || message.key.remoteJid;
       const username = userId.split('@')[0];
 
-      // Check if welcome is enabled
-      if (!config.WELCOME_ENABLED) {
-        await sock.sendMessage(from, {
-          text: '🚫 The welcome command is disabled by the owner.',
-        });
-        return;
+      // Vérifie si GOODBYE est activé
+      if (!config.GOODBYE_ENABLED) {
+        return; // Ne rien envoyer si désactivé
       }
 
       const metadata = await sock.groupMetadata(from);
       const groupName = metadata.subject || 'ce groupe';
       const membersCount = metadata.participants.length;
-      const adminsCount = metadata.participants.filter(p => p.admin !== null).length;
 
       let profilePicUrl = null;
       try {
@@ -31,17 +27,17 @@ export default {
       }
 
       const dateString = new Date().toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
+
       const text = `
-╔═════════════❦︎═══════════
-║ 🤗 *Welcome @${username} !*
-╠═════════════❦︎═══════════
-║ 👥 *Group:* ${groupName}
-║👤 *Members:* ${membersCount}
-║👑 *Admins:* ${adminsCount}
-║🗓️ *Date:* ${dateString}
-║🤖 *Bot:* ${config.BOT_NAME || 'LORD_OBITO-MD'}
+╔═════════════☹︎︎═══════════════
+║ 😢 *@${username}* a quitté le groupe.
+╠═════════════☹︎═══════════════
+║ 👥 *Groupe :* ${groupName}
+║ 👤 *Membres restants :* ${membersCount}
+║ 🗓️ *Date :* ${dateString}
+║ 🤖 *Bot :* ${config.BOT_NAME || 'LORD_OBITO-XMD-V2'}
 ║
-╚══════════════════════════
+╚═════════════════════════════
 > BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞
       `.trim();
 
@@ -51,7 +47,7 @@ export default {
         mentions: [userId]
       });
     } catch (err) {
-      console.error('❌ Error in the welcome command:', err);
+      console.error('❌ Erreur dans goodbye.js :', err);
     }
   }
 };
