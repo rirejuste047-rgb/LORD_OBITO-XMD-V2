@@ -1,9 +1,20 @@
+import config from '../config.js';
+import fs from 'fs-extra';
+import { getSender, isAllowed } from '../lib/utils.js';
+
+const sudoFile = './lib/sudo.json';
+
 export default {
   name: 'tagadmin',
   category: 'Group',
   execute: async (sock, msg) => {
     const jid = msg.key.remoteJid;
+    const sender = getSender(msg, sock);
 
+    // Vérifier les permissions d'utilisation
+    if (!isAllowed(sender)) return;
+
+    // Vérifier si la commande est dans un groupe
     if (!jid.endsWith('@g.us')) {
       return sock.sendMessage(jid, {
         text: '🚫 *Cette commande ne peut être utilisée que dans les groupes.*'
@@ -15,9 +26,10 @@ export default {
     const groupMembers = metadata.participants;
     const memberCount = groupMembers.length;
 
+    // Récupérer le nom de l'utilisateur appelant
     const senderId = msg.key.participant || msg.key.remoteJid;
-    const sender = metadata.participants.find(p => p.id === senderId);
-    const adminName = sender?.notify || sender?.id.split('@')[0];
+    const senderInGroup = metadata.participants.find(p => p.id === senderId);
+    const adminName = senderInGroup?.notify || senderInGroup?.id.split('@')[0];
 
     // Filtrer les admins
     const admins = groupMembers.filter(member => member.admin !== null);

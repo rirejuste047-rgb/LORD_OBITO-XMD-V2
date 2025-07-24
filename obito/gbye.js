@@ -1,4 +1,5 @@
 import config from '../config.js';
+import { getSender, isAllowed } from '../lib/utils.js';
 
 export default {
   name: 'goodbye',
@@ -7,13 +8,14 @@ export default {
   async execute(sock, message, args) {
     try {
       const from = message.key.remoteJid;
-      const userId = message.key.participant || message.key.remoteJid;
-      const username = userId.split('@')[0];
+      const sender = getSender(message, sock);
+      if (!isAllowed(sender)) return;
 
       // Vérifie si GOODBYE est activé
-      if (!config.GOODBYE_ENABLED) {
-        return; // Ne rien envoyer si désactivé
-      }
+      if (!config.GOODBYE_ENABLED) return;
+
+      const userId = message.key.participant || message.key.remoteJid;
+      const username = userId.split('@')[0];
 
       const metadata = await sock.groupMetadata(from);
       const groupName = metadata.subject || 'ce groupe';
@@ -26,7 +28,10 @@ export default {
         profilePicUrl = null;
       }
 
-      const dateString = new Date().toLocaleString('fr-FR', { dateStyle: 'full', timeStyle: 'short' });
+      const dateString = new Date().toLocaleString('fr-FR', {
+        dateStyle: 'full',
+        timeStyle: 'short'
+      });
 
       const text = `
 ╔═════════════☹︎︎═══════════════
@@ -36,7 +41,6 @@ export default {
 ║ 👤 *Membres restants :* ${membersCount}
 ║ 🗓️ *Date :* ${dateString}
 ║ 🤖 *Bot :* ${config.BOT_NAME || 'LORD_OBITO-XMD-V2'}
-║
 ╚═════════════════════════════
 > BY ✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞
       `.trim();

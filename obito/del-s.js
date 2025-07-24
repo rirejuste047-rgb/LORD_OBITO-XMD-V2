@@ -1,5 +1,6 @@
 import config from '../config.js';
 import fs from 'fs-extra';
+import { getSender, isAllowed } from '../lib/utils.js';
 
 const sudoFile = './lib/sudo.json';
 
@@ -7,25 +8,32 @@ export default {
   name: 'delsudo',
   category: 'Sudo',
   execute: async (sock, msg, args) => {
-    const sender = (msg.key.participant || msg.key.remoteJid).split('@')[0];
+    const sender = getSender(msg, sock);
+    if (!isAllowed(sender)) return;
 
-    // Load sudo list
+    // Charger la liste sudo
     let sudoList = [];
     if (fs.existsSync(sudoFile)) {
       sudoList = JSON.parse(await fs.readFile(sudoFile));
     }
 
-    // Check OWNER or SUDO permission
-    if (sender !== config.OWNER_NUMBER && !sudoList.includes(sender)) {
-      return sock.sendMessage(msg.key.remoteJid, { text: '🚫 *Access denied. Owner or Sudo only.*' });
+    // Vérifier l'autorisation
+    const isAuthorized = sender === config.OWNER_NUMBER || sudoList.includes(sender);
+    if (!isAuthorized) {
+      return sock.sendMessage(msg.key.remoteJid, {
+        text: '🚫 *Access denied. Owner or Sudo only.*'
+      });
     }
 
-    // Get number via reply or args
+    // Identifier le numéro à retirer
     let numberToDel = null;
 
-    if (msg.message?.extendedTextMessage?.contextInfo?.mentionedJid) {
-      numberToDel = msg.message.extendedTextMessage.contextInfo.mentionedJid[0].split('@')[0];
-    } else if (msg.message?.extendedTextMessage?.contextInfo?.quotedMessage) {
+    const mentions = msg.message?.extendedTextMessage?.contextInfo?.mentionedJid;
+    if (mentions && mentions.length > 0) {
+      numberToDel = mentions[0].split('@')[0];
+    }
+
+    if (!numberToDel && msg.message?.extendedTextMessage?.contextInfo?.quotedMessage) {
       numberToDel = msg.message.extendedTextMessage.contextInfo.participant?.split('@')[0];
     }
 
@@ -34,15 +42,22 @@ export default {
     }
 
     if (!numberToDel) {
-      return sock.sendMessage(msg.key.remoteJid, { text: '📝 *Usage:* Reply to a message or type !sudodel 123456789' });
+      return sock.sendMessage(msg.key.remoteJid, {
+        text: '📝 *Usage:* Reply to a message or type .delsudo 225xxxxxxxxx'
+      });
     }
 
     if (!sudoList.includes(numberToDel)) {
-      return sock.sendMessage(msg.key.remoteJid, { text: `❌ *${numberToDel} is not a sudo user.*` });
+      return sock.sendMessage(msg.key.remoteJid, {
+        text: `❌ *${numberToDel} is not in the sudo list.*`
+      });
     }
 
-    sudoList = sudoList.filter(n => n !== numberToDel);
+    sudoList = sudoList.filter(num => num !== numberToDel);
     await fs.writeFile(sudoFile, JSON.stringify(sudoList, null, 2));
-    await sock.sendMessage(msg.key.remoteJid, { text: `✅ *${numberToDel} has been removed from sudo.*` });
+
+    await sock.sendMessage(msg.key.remoteJid, {
+      text: `✅ *${numberToDel} has been removed from sudo list.*`
+    });
   }
 };

@@ -1,9 +1,13 @@
 import config from '../config.js';
+import { getSender, isAllowed } from '../lib/utils.js';
 
 export default {
   name: 'botinfo',
   category: 'General',
   execute: async (sock, msg) => {
+    const sender = getSender(msg, sock);
+    if (!isAllowed(sender)) return;
+
     await sock.sendMessage(msg.key.remoteJid, {
       text: `
 ╔═════════════❦︎═══════════════
@@ -13,7 +17,7 @@ export default {
 ║ 📞 Number: ${config.OWNER_NUMBER}
 ║ 🔗 Channel: ${config.CHANNEL_URL}
 ╚═════════════════════════════
-      `.trim()
+`.trim()
     });
   }
 };

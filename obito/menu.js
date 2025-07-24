@@ -1,11 +1,14 @@
 import config from '../config.js';
 import process from 'process';
+import { getSender, isAllowed } from '../lib/utils.js';
 
 export default {
   name: 'menu',
   category: 'General',
   execute: async (sock, msg) => {
-    const sender = msg.key.participant ? msg.key.participant.split('@')[0] : msg.key.remoteJid.split('@')[0];
+    const sender = getSender(msg, sock);
+    if (!isAllowed(sender)) return;
+
     const uptime = process.uptime();
     const hours = Math.floor(uptime / 3600);
     const minutes = Math.floor((uptime % 3600) / 60);
