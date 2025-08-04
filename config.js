@@ -12,9 +12,9 @@ try {
 
 export default {
   MODE, // ¡û maintenant dynamique
-  SESSION_ID: process.env.SESSION_ID || 'LORD~OBITO~aVNjiY6Q#IOHcCpQBUsdekcVQKFFZb_tJ-OMBvF17TmClJYho8io',
-  OWNER_NUMBER: '2250712668494',
-  OWNER_NAME: '✞︎ 𝙇𝙊𝙍𝘿 𝙊𝘽𝙄𝙏𝙊 𝘿𝙀𝙑 ✞',
+  SESSION_ID: process.env.SESSION_ID || 'LORD~OBITO~YOUR_SESSION',
+  OWNER_NUMBER: '225XXXX',
+  OWNER_NAME: 'YOUR_NAME',
   CHANNEL_URL: 'https://whatsapp.com/channel/0029Vb65HSyHwXbEQbQjQV26',
   AUTO_REACT: false,
   PREFIX: '.',
