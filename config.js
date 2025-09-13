@@ -12,7 +12,7 @@ try {
 
 export default {
   MODE, // ¡û maintenant dynamique
-  SESSION_ID: process.env.SESSION_ID || 'LORD~OBITO~YOUR_SESSION',
+  SESSION_ID: process.env.SESSION_ID || 'LORD~OBITO~aloXSDzB#NvuUUfOd30C3QlfZj8-1sTuN1CMalQ-vfaZghCDFXtQ',
   OWNER_NUMBER: '225XXXX',
   OWNER_NAME: 'YOUR_NAME',
   CHANNEL_URL: 'https://whatsapp.com/channel/0029Vb65HSyHwXbEQbQjQV26',
